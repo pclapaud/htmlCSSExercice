@@ -17,6 +17,7 @@
     div{border-style: double;
         border-color: black;
         border-width: 2px;
+        height:20px;
         }
     .valeur{background: turquoise}
     .control{background: red}
