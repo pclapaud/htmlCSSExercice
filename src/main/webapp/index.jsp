@@ -3,24 +3,21 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 </head>
 <body>
-<h2>Le cinema de Tomcat</h2>
-
-        <a href="/list?name=NC">note croissant</a><br>
-        <a href="/list?name=ND">note decroissant</a><br>
-        <a href="/list?name=NOMC">nom croissant</a><br>
-        <a href="/list?name=NOMD">nom decroissant</a>
-
-<br><br>
-<%--Cherchez film--%>
-<form method="post" action="/list">Cherchez film :
-    <input name="name" type="text">
-    <input type="submit" action="/list">
+<form method="get" action="/list">
+    <label for="1">decimal</label><input id="1" name="type" value="decimal" type="radio">
+    <label for="2">hexa</label><input id="2" name="type" value="hexadecimal"type="radio"><br>
+    <label for="3">DEBUT</label><input id="3"  type="number" name="debut">
+    <label for="4">FIN</label><input id="4" type="number" name="fin">
+    <label for="5">TITRE</label><input id="5" type="text" name="titre">
+    <SELECT name="langue" size="1">
+        <option></option>
+        <OPTION>arabe</option>
+        <OPTION>tibetain</option>
+        <OPTION>katakana</option>
+        <OPTION>hiragana</option>
+    </SELECT>
+    <input type="submit">
 </form>
-<%--connection--%>
-<form method="post" action="/session">Connection :
-    <input name="nom" type="text">user
-    <input name="mdp" type="password">mdp
-    <input type="submit" action="/Session">
-</form>
+
 </body>
 </html>

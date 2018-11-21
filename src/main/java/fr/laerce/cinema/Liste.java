@@ -17,21 +17,7 @@ public class Liste extends HttpServlet {
 
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String name = request.getParameter("name");
-        PrintWriter out = response.getWriter();
-        FilmsDonnees fd = new FilmsDonnees();
-        ArrayList<Film> mesfilm = new ArrayList<>();
 
-
-        for (Film film:fd.lesFilms) {
-            if (film.titre.toLowerCase().contains(name.toLowerCase())){
-            mesfilm.add(film);
-            }
-        }
-        request.setAttribute ("mesfilm", mesfilm);
-        String jspview = "liste.jsp";
-        getServletConfig().getServletContext()
-                .getRequestDispatcher("/WEB-INF/jsp/"+jspview).forward(request, response);
 
 
 
@@ -39,27 +25,63 @@ public class Liste extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String name = request.getParameter("name");
-        PrintWriter out = response.getWriter();
-        FilmsDonnees fd = new FilmsDonnees();
-        ArrayList<Film> mesfilm = new ArrayList<>();
-        Collections.sort(fd.lesFilms, (o1, o2) -> o1.titre.compareToIgnoreCase(o2.titre));
-        if(name.equals("NC")){
-            Collections.sort(fd.lesFilms, (o1, o2) -> o1.noteString().compareToIgnoreCase(o2.noteString()));
+        String type = request.getParameter("type");
+        Integer debut = Integer.parseInt(request.getParameter("debut"));
+        Integer fin = Integer.parseInt(request.getParameter("fin"));
+        String langue = request.getParameter("langue");
+        String titre = request.getParameter("titre");
+        if(langue !=null){
+            if(langue.equals("arabe")){
+                debut=1536;
+                fin=1791;
+            }
+            if(langue.equals("tibetain")){
+                debut=3840;
+                fin=4058;
+            }
+            if(langue.equals("katakana")){
+                debut=12448;
+                fin=12543;
+            }
+            if(langue.equals("hiragana")){
+                debut=12352;
+                fin=12447;
+            }
+
         }
 
-        if(name.equals("ND")){
-            Collections.sort(fd.lesFilms, (o1, o2) -> o2.noteString().compareToIgnoreCase(o1.noteString()));
-        }
-        if(name.equals("NOMD")){
-            Collections.sort(fd.lesFilms, (o1, o2) -> o2.titre.compareToIgnoreCase(o1.titre));
+
+        ArrayList<String> mesnombres = new ArrayList<>();
+        ArrayList<String> mesnombresControl = new ArrayList<>();
+        for (int i = debut;i<fin;i++){
+
+            if (type.equals("hexadecimal")) {
+                String hex = Integer.toHexString(i);
+
+                if (i<33){
+                    mesnombresControl.add(hex);
+                }
+                else{
+                    mesnombres.add(hex);
+                }
+
+            }
+            else {
+
+                if (i<33){
+                    mesnombresControl.add(""+i);
+                }
+                else {
+                    mesnombres.add(""+i);
+                }
+            }
+
 
         }
+        request.setAttribute ("mesnombresControl", mesnombresControl);
+        request.setAttribute ("mesnombres", mesnombres);
+        request.setAttribute ("titre", titre);
 
-        for (Film film:fd.lesFilms) {
-            mesfilm.add(film);
-        }
-        request.setAttribute ("mesfilms", mesfilm);
         String jspview = "liste.jsp";
         getServletConfig().getServletContext()
                 .getRequestDispatcher("/WEB-INF/jsp/"+jspview).forward(request, response);

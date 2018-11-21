@@ -10,12 +10,59 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>${titre}</title>
 </head>
+<style>
+    div{border-style: double;
+        border-color: black;
+        border-width: 2px;
+        }
+    .valeur{background: turquoise}
+    .control{background: red}
+    .reel{background: green}
+
+</style>
 <body>
-<c:forEach items="${mesfilms}" var="film" >
-    <li><a href="/details/${film.id}">${film.titre}</a></li>
-</c:forEach>
+<h1>${titre}</h1>
+<table>
+    <tbody>
+    <tr>
+    <c:forEach items="${mesnombresControl}" var="nbr" >
+
+            <td>
+
+                <div class="control">${nbr}</div> <div class="reel">&#${nbr};</div>
+
+            </td>
+
+
+    </c:forEach>
+        <br>
+
+    </tr>
+    <tr>
+    <c:forEach items="${mesnombres}"  var="nbr" varStatus="status">
+
+            ${status.index%32==0?'</tr><tr>':''}
+
+
+
+
+
+
+            <td>
+
+                    <div class="valeur">${nbr}</div> <div class="reel">&#${nbr};</div>
+
+            </td>
+
+
+    </c:forEach>
+    </tr>
+
+    </tbody>
+</table>
+
 
 </body>
 </html>
