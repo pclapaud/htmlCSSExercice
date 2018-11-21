@@ -4,7 +4,7 @@
 </head>
 <body>
 <form method="get" action="/list">
-    <label for="1">decimal</label><input id="1" name="type" value="decimal" type="radio">
+    <label for="1">decimal</label><input checked id="1" name="type" value="decimal" type="radio">
     <label for="2">hexa</label><input id="2" name="type" value="hexadecimal"type="radio"><br>
     <label for="3">DEBUT</label><input id="3"  type="number" name="debut">
     <label for="4">FIN</label><input id="4" type="number" name="fin">

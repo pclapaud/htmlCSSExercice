@@ -26,11 +26,11 @@ public class Liste extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String type = request.getParameter("type");
-        Integer debut = Integer.parseInt(request.getParameter("debut"));
-        Integer fin = Integer.parseInt(request.getParameter("fin"));
+        Integer debut = 0;
+        Integer fin = 0;
         String langue = request.getParameter("langue");
         String titre = request.getParameter("titre");
-        if(langue !=null){
+        if(langue !=""){
             if(langue.equals("arabe")){
                 debut=1536;
                 fin=1791;
@@ -47,13 +47,16 @@ public class Liste extends HttpServlet {
                 debut=12352;
                 fin=12447;
             }
-
+        }
+        else{
+            debut = Integer.parseInt(request.getParameter("debut"));
+            fin = Integer.parseInt(request.getParameter("fin"));
         }
 
 
         ArrayList<String> mesnombres = new ArrayList<>();
         ArrayList<String> mesnombresControl = new ArrayList<>();
-        for (int i = debut;i<fin;i++){
+        for (int i = debut;i<fin+1;i++){
 
             if (type.equals("hexadecimal")) {
                 String hex = Integer.toHexString(i);
