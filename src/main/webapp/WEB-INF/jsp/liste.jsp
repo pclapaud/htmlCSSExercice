@@ -17,7 +17,8 @@
     div{border-style: double;
         border-color: black;
         border-width: 2px;
-        height:20px;
+        min-height:20px;
+        min-width:20px;
         }
     .valeur{background: turquoise}
     .control{background: red}
@@ -30,41 +31,22 @@
     <tbody>
     <tr>
     <c:forEach items="${mesnombresControl}" var="nbr" >
-
             <td>
-
                 <div class="control">${nbr}</div> <div class="reel">&#${nbr};</div>
-
             </td>
-
-
     </c:forEach>
         <br>
-
     </tr>
     <tr>
     <c:forEach items="${mesnombres}"  var="nbr" varStatus="status">
-
             ${status.index%32==0?'</tr><tr>':''}
-
-
-
-
-
-
             <td>
-
                     <div class="valeur">${nbr}</div> <div class="reel">&#${nbr};</div>
-
             </td>
-
-
     </c:forEach>
     </tr>
 
     </tbody>
 </table>
-
-
 </body>
 </html>

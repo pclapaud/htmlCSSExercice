@@ -78,8 +78,6 @@ public class Liste extends HttpServlet {
                     mesnombres.add(""+i);
                 }
             }
-
-
         }
         request.setAttribute ("mesnombresControl", mesnombresControl);
         request.setAttribute ("mesnombres", mesnombres);
