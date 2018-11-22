@@ -54,28 +54,28 @@ public class Liste extends HttpServlet {
         }
 
 
-        ArrayList<String> mesnombres = new ArrayList<>();
-        ArrayList<String> mesnombresControl = new ArrayList<>();
+        ArrayList<Nombre> mesnombres = new ArrayList<>();
+        ArrayList<Nombre> mesnombresControl = new ArrayList<>();
         for (int i = debut;i<fin+1;i++){
 
             if (type.equals("hexadecimal")) {
                 String hex = Integer.toHexString(i);
 
                 if (i<33){
-                    mesnombresControl.add(hex);
+                    mesnombresControl.add(new Nombre(hex,i));
                 }
                 else{
-                    mesnombres.add(hex);
+                    mesnombres.add(new Nombre(hex,i));
                 }
 
             }
             else {
 
                 if (i<33){
-                    mesnombresControl.add(""+i);
+                    mesnombresControl.add(new Nombre(""+i,i));
                 }
                 else {
-                    mesnombres.add(""+i);
+                    mesnombres.add(new Nombre(""+i,i));
                 }
             }
         }

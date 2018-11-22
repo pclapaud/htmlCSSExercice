@@ -32,7 +32,7 @@
     <tr>
     <c:forEach items="${mesnombresControl}" var="nbr" >
             <td>
-                <div class="control">${nbr}</div> <div class="reel">&#${nbr};</div>
+                <div class="control">${nbr.affichage}</div> <div class="reel">&#${nbr.nombre};</div>
             </td>
     </c:forEach>
         <br>
@@ -41,7 +41,7 @@
     <c:forEach items="${mesnombres}"  var="nbr" varStatus="status">
             ${status.index%32==0?'</tr><tr>':''}
             <td>
-                    <div class="valeur">${nbr}</div> <div class="reel">&#${nbr};</div>
+                    <div class="valeur">${nbr.affichage}</div> <div class="reel">&#${nbr.nombre};</div>
             </td>
     </c:forEach>
     </tr>
